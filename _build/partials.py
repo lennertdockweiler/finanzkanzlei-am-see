@@ -5,6 +5,9 @@ import os
 DOMAIN = "https://finanzkanzlei-am-see.de"
 # PREVIEW=1 → noindex für die Vorschau (z. B. GitHub Pages). Live-Build ohne PREVIEW erzeugen!
 PREVIEW = os.environ.get("PREVIEW") == "1"
+# THEME=blau → Farbvariante in Unterordner variante-<theme>/ mit zusätzlichem Stylesheet
+THEME = os.environ.get("THEME", "").strip()
+VARIANTS = [("", "Sand"), ("blau", "Blau")]
 PHONE = "07551 93771-0"
 PHONE_HREF = "+497551937710"
 MAIL = "info@fksee.de"
@@ -57,6 +60,7 @@ LAKE_UNTER = "M398 474 L363 471 L328 474 L292 480 L260 478 L267 465 L297 450 L30
 
 def head(title, desc, path, extra_head=""):
     canonical = f"{DOMAIN}/{'' if path == 'index.html' else path}"
+    theme_css = f'  <link rel="stylesheet" href="assets/css/theme-{THEME}.css">\n' if THEME else ""
     robots = '  <meta name="robots" content="noindex, nofollow">\n' if PREVIEW and "robots" not in extra_head else ""
     return f'''<!doctype html>
 <html lang="de">
@@ -85,12 +89,27 @@ def head(title, desc, path, extra_head=""):
   <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-sans-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css">
-  <script src="assets/js/main.js" defer></script>
+{theme_css}  <script src="assets/js/main.js" defer></script>
 {robots}{extra_head}</head>
 '''
 
 
 CUR = ' aria-current="page"'
+
+
+def preview_bar(active):
+    """Nur in der Vorschau: Hinweis + Umschalter zwischen den Farbvarianten derselben Seite."""
+    if not PREVIEW or not active:
+        return ""
+    links = []
+    for theme, label in VARIANTS:
+        here = "variante-" + THEME + "/" if THEME else ""
+        target = "variante-" + theme + "/" if theme else ""
+        href = ("../" if here else "") + target + active
+        cur = ' aria-current="true"' if theme == THEME else ""
+        links.append(f'<a href="{href}"{cur}>{label}</a>')
+    return ('  <div class="preview-bar" role="note"><span><span class="preview-bar__long">Entwurf zur Abstimmung · </span>Farbvariante:</span> '
+            + " ".join(links) + "</div>\n")
 
 
 def header(active):
@@ -101,7 +120,7 @@ def header(active):
     )
     return f'''<body>
   <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
-
+{preview_bar(active)}
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="brand" href="index.html" aria-label="Finanzkanzlei am See – zur Startseite">

@@ -955,7 +955,19 @@ PAGES = {
     "404.html": page_404,
 }
 
+def rebase(html):
+    """Variante liegt einen Ordner tiefer: gemeinsame Assets über ../ laden."""
+    import re
+    html = re.sub(r'(href|src)="(assets/|favicon|apple-touch|site\.webmanifest)', r'\1="../\2', html)
+    return html.replace('<meta name="theme-color" content="#f3eee4">', '<meta name="theme-color" content="#ffffff">')
+
+
 if __name__ == "__main__":
+    out = OUT / f"variante-{THEME}" if THEME else OUT
+    out.mkdir(exist_ok=True)
     for name, fn in PAGES.items():
-        (OUT / name).write_text(fn(), encoding="utf-8")
-        print("✓", name)
+        if THEME and name == "404.html":
+            continue  # Server liefert nur die 404 im Wurzelordner aus
+        html = fn()
+        (out / name).write_text(rebase(html) if THEME else html, encoding="utf-8")
+        print("✓", out.name + "/" + name)

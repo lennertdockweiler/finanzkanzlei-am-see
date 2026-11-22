@@ -1,0 +1,131 @@
+/* ==========================================================================
+   Farbvariante „Blau“ – wird NACH style.css geladen und überschreibt nur Tokens
+   und wenige Regeln. Layout, Typografie und Signature-Element bleiben gleich.
+
+   Prinzip: Blau ist die Arbeitsfarbe (Buttons, Links, Akzente).
+            Orange markiert nur noch „Ihres“ – die Boje „Ihre Bank“,
+            „Ihr Kaufpreis“, „0 €“ und die Zentrale auf der Karte.
+            Mehr Weiß: Weiß statt Sand, helle Blau-Flächen statt Nebelgrün.
+   ========================================================================== */
+
+:root {
+  --c-paper: #ffffff;          /* Seitenhintergrund */
+  --c-surface: #f4f7fb;        /* helle Flächen */
+  --c-mist: #e8eff8;           /* ruhige Flächen */
+  --c-ink: #0b1f3a;            /* Nachtblau – Text (16.5:1) */
+  --c-ink-soft: #4b5b72;       /* Sekundärtext (6.9:1 auf Weiß) */
+  --c-lake: #0f3a6b;           /* Bodensee-Blau – dunkle Sektionen */
+  --c-lake-2: #17508f;
+  --c-on-lake: #ffffff;
+  --c-on-lake-soft: #c3d3e8;   /* 7.5:1 auf Seeblau */
+  --c-line: #d5deea;
+  --c-line-lake: #2b5a8e;
+  --c-accent-ink: #1f5fbf;     /* Hervorhebungen in Text: Blau (6.1:1) */
+  --c-focus: #0b1f3a;
+
+  /* neue Rolle: Arbeitsblau */
+  --c-blue: #1f5fbf;           /* weiße Schrift darauf: 6.1:1 */
+  --c-blue-hover: #174f9f;     /* 7.9:1 */
+  --c-sky: #8fb8ee;            /* Akzent auf Seeblau (5.6:1) */
+  --c-input: #6f8099;          /* Eingaberahmen, 4:1 auf Weiß */
+
+  --r-md: 14px;
+  --sh-inset: inset 0 0 0 1px var(--c-line);
+  --sh-soft: 0 1px 2px rgb(11 31 58 / 0.05), 0 12px 32px -16px rgb(11 31 58 / 0.18);
+  --sh-lift: 0 2px 4px rgb(11 31 58 / 0.06), 0 24px 48px -24px rgb(15 58 107 / 0.35);
+}
+
+::selection { background: var(--c-sky); color: var(--c-ink); }
+
+/* Header: weiß, feine blaue Linie beim Scrollen */
+.site-header { background: rgb(255 255 255 / 0.94); }
+.site-nav a::after,
+.site-nav a[aria-current="page"]::after { background: var(--c-blue); }
+.site-nav a[aria-current="page"] { color: var(--c-accent-ink); }
+
+/* Primärbuttons: Blau mit weißer Schrift */
+.btn--accent { --btn-bg: var(--c-blue); --btn-fg: #fff; --btn-bd: var(--c-blue); }
+.btn--accent:hover { --btn-bg: var(--c-blue-hover); --btn-bd: var(--c-blue-hover); --btn-fg: #fff; box-shadow: 0 8px 20px -10px rgb(31 95 191 / 0.7); }
+.btn:hover { --btn-bg: var(--c-blue-hover); --btn-bd: var(--c-blue-hover); }
+.btn--ghost:hover { --btn-bg: var(--c-ink); --btn-bd: var(--c-ink); }
+/* Auf dunklem Seeblau: weißer Button, damit er sich klar abhebt */
+.section--lake .btn--accent,
+.on-lake .btn--accent { --btn-bg: #fff; --btn-fg: var(--c-ink); --btn-bd: #fff; }
+.section--lake .btn--accent:hover,
+.on-lake .btn--accent:hover { --btn-bg: var(--c-sky); --btn-bd: var(--c-sky); --btn-fg: var(--c-ink); }
+.on-lake :focus-visible,
+.cta-band :focus-visible,
+.site-footer :focus-visible { outline-color: var(--c-sky); }
+
+.header-call { background: var(--c-blue); color: #fff; }
+.header-call:hover { background: var(--c-blue-hover); color: #fff; }
+
+a:hover { color: var(--c-blue); }
+.arrow-link { border-bottom-color: var(--c-blue); }
+.section--lake a:hover,
+.site-footer a:hover { color: var(--c-sky); }
+.section--lake h2 em,
+.section--lake h1 em,
+.cta-band h2 em,
+.footer-claim em { color: var(--c-sky); }
+
+/* Häkchen und Vertrauenszeile in Blau */
+.ticks li::before {
+  background: var(--c-blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 80% no-repeat;
+}
+.trust-line svg { color: var(--c-blue); }
+.section--lake .trust-line svg,
+.cta-band .trust-line svg { color: var(--c-sky); }
+
+/* Formular */
+.input, .select, .textarea, .choice span { border-color: var(--c-input); background: #fff; }
+.input:focus-visible, .select:focus-visible, .textarea:focus-visible { box-shadow: 0 0 0 3px var(--c-sky); }
+.choice input:checked + span { background: var(--c-blue); border-color: var(--c-blue); color: #fff; }
+.choice input:focus-visible + span { box-shadow: 0 0 0 3px var(--c-sky); }
+.check input { accent-color: var(--c-blue); }
+.contact__form { box-shadow: var(--sh-soft), var(--sh-inset); }
+
+/* Rechner: blaue Regler, Ergebnis bleibt orange („Ihr Kaufpreis“) */
+.range::-webkit-slider-runnable-track { background: linear-gradient(90deg, var(--c-blue) var(--pct), var(--c-mist) var(--pct)); }
+.range::-moz-range-progress { background: var(--c-blue); }
+.range::-webkit-slider-thumb { border-color: var(--c-blue); background: #fff; }
+.range::-moz-range-thumb { border-color: var(--c-blue); background: #fff; }
+.calc { box-shadow: var(--sh-lift), var(--sh-inset); }
+
+/* Mehr Weiß: Flächen-Sektionen sehr hell, Karten mit Linie statt Sand */
+.section--mist { background: var(--c-surface); }
+.section--surface { background: var(--c-paper); border-block: 1px solid var(--c-line); }
+.field-panel--sand { background: #fff; }
+.field-panel--mist { background: var(--c-mist); }
+.field-panel .tags li { border-color: var(--c-blue); color: var(--c-accent-ink); }
+.situation__fact { background: var(--c-surface); }
+.feature__aside { background: var(--c-surface); box-shadow: var(--sh-inset); }
+.location { background: #fff; }
+.stat dd { color: var(--c-accent-ink); }
+.step::before { background: var(--c-blue); }
+.faq summary:hover::after { background-color: var(--c-sky); }
+.placeholder-note { border-left-color: var(--c-blue); background: var(--c-surface); }
+.location:target { box-shadow: 0 0 0 3px var(--c-blue); }
+
+/* CTA-Band: Ring in Himmelblau statt Orange */
+.cta-band::after { border-color: var(--c-sky); box-shadow: 0 0 0 1.5rem rgb(143 184 238 / 0.1), 0 0 0 3rem rgb(143 184 238 / 0.06); }
+
+/* Signature: Punkte in Seeblau, die Boje bleibt das einzige Orange */
+.buoyfield__svg .dot { fill: var(--c-lake-2); }
+
+/* Bild-Platzhalter: Himmel heller, See tiefer */
+.ph {
+  background:
+    radial-gradient(circle at 78% 22%, var(--c-accent) 0 7%, transparent 7.5%),
+    repeating-linear-gradient(180deg, transparent 0 14px, rgb(255 255 255 / 0.1) 14px 15px),
+    linear-gradient(180deg, #3d78c4 0 58%, var(--c-lake) 58% 100%);
+}
+.ph::before { background: var(--c-lake-2); }
+
+.site-footer { background: var(--c-ink); }
+
+/* Bildmarke in Seeblau (überschreibt die SVG-Füllfarbe) */
+.brand__mark circle:first-of-type { fill: var(--c-lake); }
+
+/* Zentrale-Karte bleibt dunkel (die weiße Kartenregel oben darf sie nicht treffen) */
+.location.location--hq { background: var(--c-lake); }

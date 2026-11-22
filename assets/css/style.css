@@ -1254,3 +1254,43 @@ a:hover { color: var(--c-accent-ink); text-decoration-thickness: 2px; }
 /* Standortkarten: Termin-Link immer unten bündig */
 .location { display: flex; flex-direction: column; }
 .location__cta { margin-top: auto; padding-top: var(--s-1); }
+
+/* Nur Vorschau: Hinweis + Umschalter zwischen Farbvarianten (wird im Live-Build nicht erzeugt) */
+.preview-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  padding: 0.4rem var(--gutter);
+  background: var(--c-ink);
+  color: var(--c-on-lake-soft);
+  font-size: var(--fs-xs);
+}
+.preview-bar a {
+  padding: 0.2rem 0.75rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-on-lake-soft);
+  color: var(--c-on-lake);
+  font-weight: 600;
+  text-decoration: none;
+}
+.preview-bar a:hover { background: var(--c-on-lake); color: var(--c-ink); }
+.preview-bar a[aria-current="true"] { background: var(--c-on-lake); color: var(--c-ink); }
+.preview-bar :focus-visible { outline-color: var(--c-on-lake); }
+
+/* Standorte-Seite: Karte nicht über die volle Breite aufblasen */
+.section--lake > .container > .map { max-width: 44rem; margin-inline: auto; }
+
+/* Vorschau-Leiste mobil einzeilig */
+@media (max-width: 29.99em) {
+  .preview-bar__long { display: none; }
+}
+
+/* Sekundärtext auf dunklem Grund lesbar halten (vorher ~2:1) */
+.section--lake .text-soft { color: var(--c-on-lake-soft); }
+.section--lake > .container > .map + p { max-width: 44rem; margin-inline: auto; text-align: center; }
+
+/* CTA-Band ist dunkel, aber keine .section--lake: Vertrauenszeile hell halten (vorher 1.75:1) */
+.cta-band .trust-line { color: var(--c-on-lake-soft); }
+.cta-band .trust-line svg { color: var(--c-accent); }
