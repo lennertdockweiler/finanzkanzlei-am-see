@@ -357,6 +357,7 @@ SCHOLL_LD = {
     "workLocation": {"@type": "Place", "address": {"@type": "PostalAddress", "streetAddress": "Line-Eid-Str. 6",
                                                   "postalCode": "78467", "addressLocality": "Konstanz", "addressCountry": "DE"}},
     "url": f"{DOMAIN}/baufinanzierung.html#grenzgaenger",
+    "image": f"{DOMAIN}/assets/img/andreas-scholl.webp",
 }
 
 def page_bau():
@@ -404,10 +405,11 @@ def page_bau():
         </aside>
       </section>
 
-      <!-- Berater-Porträt: Bewertungen und Zitate aus dem Dr.-Klein-Profil (drklein.de/berater/andreas-scholl.html), Stand 11/2026 -->
+      <!-- Berater-Porträt: Foto, Bewertungen und Zitate aus dem Dr.-Klein-Profil (drklein.de/berater/andreas-scholl.html),
+           Stand 11/2026 – Nutzung von Foto und Kundenstimmen freigegeben -->
       <section class="advisor" id="grenzgaenger" aria-labelledby="gg-t">
         <div class="advisor__portrait">
-          <div class="ph ph--portrait ph--organic" role="img" aria-label="Platzhalter: Porträt Andreas Scholl"><span>[[ERSETZEN: Porträt Andreas Scholl – Foto aus seinem Dr.-Klein-Beraterprofil, Nutzungsrecht klären, Hochformat 4:5]]</span></div>
+          <div class="advisor__photo"><img src="assets/img/andreas-scholl.webp" width="384" height="480" alt="Andreas Scholl, Spezialist für Grenzgänger-Finanzierungen in Konstanz" loading="lazy" decoding="async"></div>
           <p class="advisor__score"><strong>4,96<span> / 5</span></strong>aus 182 Kundenbewertungen – 99,45&nbsp;% würden ihn weiterempfehlen.</p>
           <p class="small text-soft mb-0">Quelle: Kundenbefragung der Dr. Klein Privatkunden AG, Stand November 2026.</p>
         </div>
