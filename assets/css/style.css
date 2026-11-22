@@ -1082,6 +1082,25 @@ a:hover { color: var(--c-accent-ink); text-decoration-thickness: 2px; }
   .feature--flip .feature__aside { order: -1; }
 }
 
+/* Berater-Porträt (Baufinanzierung → Grenzgänger) */
+.advisor { display: grid; gap: var(--s-4); padding-block: var(--s-6); border-top: 1px solid var(--c-line); }
+.advisor h2 { font-size: var(--fs-h3); }
+.advisor__portrait { align-self: start; max-width: 22rem; }
+.advisor__score { margin: var(--s-3) 0 0.25rem; font-size: var(--fs-sm); color: var(--c-ink-soft); }
+.advisor__score strong { display: block; margin-bottom: 0.25rem; font: 600 var(--fs-h2)/1 var(--f-display); color: var(--c-ink); }
+.advisor__score strong span { font-size: var(--fs-h4); color: var(--c-ink-soft); }
+.advisor__quotes { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
+.advisor__quote { margin: 0; padding-left: var(--s-3); border-left: 3px solid var(--c-accent-ink); }
+.advisor__quote blockquote { margin: 0; font: italic 400 var(--fs-h4)/1.45 var(--f-display); }
+.advisor__quote p { margin: 0; }
+.advisor__quote figcaption { margin-top: var(--s-1); font-size: var(--fs-xs); color: var(--c-ink-soft); }
+.advisor__actions { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-5); }
+@media (min-width: 56em) {
+  .advisor { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); gap: var(--s-6); }
+  .advisor__portrait { position: sticky; top: calc(var(--header-h) + 2rem); }
+}
+@media (min-width: 72em) { .advisor__quotes { grid-template-columns: 1fr 1fr; } }
+
 /* Anlage-Vergleich */
 .compare { display: grid; gap: var(--s-3); }
 .compare article {

@@ -143,8 +143,8 @@ def page_index():
           <li class="situation" data-reveal>
             <div>
               <h3>Sie verdienen in Franken.</h3>
-              <p>Viele deutsche Banken tun sich mit Schweizer Einkommen schwer. In Konstanz sitzt unser Spezialist für Grenzgänger und Kapitalanleger mit Wohnsitz in der Schweiz.</p>
-              <a class="arrow-link mt-4" href="baufinanzierung.html#grenzgaenger">Zur Grenzgänger-Finanzierung</a>
+              <p>Viele deutsche Banken tun sich mit Schweizer Einkommen schwer. In Konstanz berät Sie Andreas Scholl, unser Spezialist für Grenzgänger und Kapitalanleger mit Wohnsitz in der Schweiz – im Büro oder per Video.</p>
+              <a class="arrow-link mt-4" href="baufinanzierung.html#grenzgaenger">Andreas Scholl kennenlernen</a>
             </div>
             <p class="situation__fact"><strong>seit 2017</strong>spezialisiert auf Finanzierungen Deutschland / Schweiz.</p>
           </li>
@@ -346,6 +346,19 @@ def page_index():
 
 
 # ───────────────────────────── Baufinanzierung ─────────────────────────────
+SCHOLL_LD = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Andreas Scholl",
+    "jobTitle": "Spezialist für Grenzgänger-Finanzierungen",
+    "worksFor": {"@id": f"{DOMAIN}/#org"},
+    "telephone": "+4975315849096",
+    "email": "andreas.scholl@drklein.de",
+    "workLocation": {"@type": "Place", "address": {"@type": "PostalAddress", "streetAddress": "Line-Eid-Str. 6",
+                                                  "postalCode": "78467", "addressLocality": "Konstanz", "addressCountry": "DE"}},
+    "url": f"{DOMAIN}/baufinanzierung.html#grenzgaenger",
+}
+
 def page_bau():
     faqs = FAQ_MAIN[:4]
     body = f'''
@@ -391,16 +404,38 @@ def page_bau():
         </aside>
       </section>
 
-      <section class="feature" id="grenzgaenger" aria-labelledby="gg-t">
-        <div>
-          <h2 id="gg-t">Grenzgänger: Finanzierung mit Schweizer Einkommen.</h2>
-          <p>Wer in der Schweiz arbeitet und in Deutschland kauft, erlebt bei vielen Banken Zurückhaltung. In Konstanz berät Sie Andreas Scholl, Bankbetriebswirt und seit 1995 in der Beratung vermögender Kundschaft. Seit 2017 ist er bei uns auf Finanzierungen für Grenzgänger und Kapitalanleger mit Wohnsitz in der Schweiz spezialisiert.</p>
-          <a class="arrow-link" href="standorte.html#konstanz">Zum Standort Konstanz</a>
+      <!-- Berater-Porträt: Bewertungen und Zitate aus dem Dr.-Klein-Profil (drklein.de/berater/andreas-scholl.html), Stand 11/2026 -->
+      <section class="advisor" id="grenzgaenger" aria-labelledby="gg-t">
+        <div class="advisor__portrait">
+          <div class="ph ph--portrait ph--organic" role="img" aria-label="Platzhalter: Porträt Andreas Scholl"><span>[[ERSETZEN: Porträt Andreas Scholl – Foto aus seinem Dr.-Klein-Beraterprofil, Nutzungsrecht klären, Hochformat 4:5]]</span></div>
+          <p class="advisor__score"><strong>4,96<span> / 5</span></strong>aus 182 Kundenbewertungen – 99,45&nbsp;% würden ihn weiterempfehlen.</p>
+          <p class="small text-soft mb-0">Quelle: Kundenbefragung der Dr. Klein Privatkunden AG, Stand November 2026.</p>
         </div>
-        <aside class="feature__aside" aria-label="Schwerpunkte Konstanz">
-          <h3>Schwerpunkte in Konstanz</h3>
-          {ticks(["Grenzgänger-Finanzierungen", "Kapitalanleger mit Wohnsitz in der Schweiz", "Existenzgründung für Heil- und Freiberufler"])}
-        </aside>
+        <div>
+          <p class="eyebrow">Ihr Berater in Konstanz</p>
+          <h2 id="gg-t">Grenzgänger: Finanzierung mit Schweizer Einkommen.</h2>
+          <p>Wer in der Schweiz arbeitet und in Deutschland kauft, erlebt bei vielen Banken Zurückhaltung. Andreas Scholl kennt diese Zurückhaltung von der anderen Seite des Tisches: Er ist Bankbetriebswirt und berät seit 1995 vermögende Kundschaft. Seit 2017 ist er bei uns in Konstanz auf Finanzierungen für Grenzgänger und Kapitalanleger mit Wohnsitz in der Schweiz spezialisiert.</p>
+          <p>Seine Kundinnen und Kunden kommen aus Konstanz und Kreuzlingen ebenso wie aus Bern, Baar oder Urdorf. Wer nicht an den See fahren möchte, bespricht die Finanzierung mit ihm per Video und E-Mail.</p>
+          <aside class="feature__aside mt-4" aria-label="Schwerpunkte Andreas Scholl">
+            <h3>Schwerpunkte</h3>
+            {ticks(["Grenzgänger-Finanzierungen mit Franken-Einkommen", "Kapitalanleger mit Wohnsitz in der Schweiz", "Existenzgründung für Heil- und Freiberufler", "Beratung im Büro Konstanz, am Telefon oder per Video"])}
+          </aside>
+          <div class="advisor__quotes">
+            <figure class="advisor__quote">
+              <blockquote><p>„Er hat uns mit viel Geduld, Ruhe und spürbarer Freude an seiner Arbeit durch die gesamte Finanzierung begleitet.“</p></blockquote>
+              <figcaption>J. K., Bern · März 2026</figcaption>
+            </figure>
+            <figure class="advisor__quote">
+              <blockquote><p>„Sachlich, direkt, klar formuliert … Es kamen immer sehr schnelle Rückmeldungen.“</p></blockquote>
+              <figcaption>D. Z., Ramsen (CH) · Februar 2026</figcaption>
+            </figure>
+          </div>
+          <div class="advisor__actions">
+            <a class="btn btn--accent" href="kontakt.html?standort=Konstanz#formular">Termin mit Andreas Scholl anfragen</a>
+            <a class="btn btn--ghost" href="tel:+4975315849096">07531 58490 96</a>
+          </div>
+          <p class="small mt-4 mb-0"><a href="mailto:andreas.scholl@drklein.de">andreas.scholl@drklein.de</a> · <a href="standorte.html#konstanz">Büro Konstanz, Line-Eid-Str. 6</a></p>
+        </div>
       </section>
 
       <section class="feature feature--flip" id="modernisierung" aria-labelledby="mod-t">
@@ -463,7 +498,7 @@ def page_bau():
 '''
     return (head("Baufinanzierung, Anschlussfinanzierung & Hauskredit | Finanzkanzlei am See",
                  "Hauskredit, Anschlussfinanzierung, Forward-Darlehen, Grenzgänger- und Gewerbefinanzierung: Ex-Banker vergleichen über 600 Banken für Sie. Kostenlos, am Bodensee.",
-                 "baufinanzierung.html", ld(faq_ld(faqs)))
+                 "baufinanzierung.html", ld(faq_ld(faqs), SCHOLL_LD))
             + header("baufinanzierung.html") + body + footer())
 
 
@@ -627,17 +662,23 @@ def page_vermoegen():
 
 
 # ───────────────────────────── Standorte ─────────────────────────────
+# Standorte mit eigenem Berater-Porträt
+PROFILE_LINKS = {
+    "konstanz": '<p class="mb-0 small"><a href="baufinanzierung.html#grenzgaenger">Andreas Scholl kennenlernen: 4,96 / 5 aus 182 Bewertungen</a></p>',
+}
+
 def page_standorte():
     cards = []
     lds = []
     for slug, name, addr, person, tel, telh, mail, hours, hq in LOCATIONS:
         badge = '<span class="location__badge">Zentrale</span>' if hq else ""
+        profile = "\n            " + PROFILE_LINKS[slug] if slug in PROFILE_LINKS else ""
         cards.append(f'''          <li class="location{" location--hq" if hq else ""}" id="{slug}">
             <h3>{name} {badge}</h3>
             <p class="location__person mb-0">{person}</p>
             <address>{addr}</address>
             <p class="mb-0"><a href="tel:{telh}">{tel}</a> · <a href="mailto:{mail}">{mail}</a></p>
-            <p class="mb-0 small">{hours}</p>
+            <p class="mb-0 small">{hours}</p>{profile}
             <a class="arrow-link location__cta" href="kontakt.html?standort={quote(name)}#formular">Termin in {name} anfragen</a>
           </li>''')
     body = f'''
