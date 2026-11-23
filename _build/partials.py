@@ -60,6 +60,10 @@ LAKE_UNTER = "M398 474 L363 471 L328 474 L292 480 L260 478 L267 465 L297 450 L30
 
 def head(title, desc, path, extra_head=""):
     canonical = f"{DOMAIN}/{'' if path == 'index.html' else path}"
+    font_preload = ('  <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>\n'
+                    if THEME == "blau" else
+                    '  <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>\n'
+                    '  <link rel="preload" href="assets/fonts/instrument-sans-var.woff2" as="font" type="font/woff2" crossorigin>\n')
     theme_css = f'  <link rel="stylesheet" href="assets/css/theme-{THEME}.css">\n' if THEME else ""
     robots = '  <meta name="robots" content="noindex, nofollow">\n' if PREVIEW and "robots" not in extra_head else ""
     return f'''<!doctype html>
@@ -86,9 +90,7 @@ def head(title, desc, path, extra_head=""):
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/instrument-sans-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css">
+{font_preload}  <link rel="stylesheet" href="assets/css/style.css">
 {theme_css}  <script src="assets/js/main.js" defer></script>
 {robots}{extra_head}</head>
 '''

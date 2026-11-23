@@ -129,3 +129,117 @@ a:hover { color: var(--c-blue); }
 
 /* Zentrale-Karte bleibt dunkel (die weiße Kartenregel oben darf sie nicht treffen) */
 .location.location--hq { background: var(--c-lake); }
+
+
+/* ==========================================================================
+   Typo & Form – Variante Blau
+   Eine Familie (Archivo, Achsen wght + wdth) statt Serif + Sans:
+   Überschriften breit und kräftig, Fließtext normal breit.
+   Form-Motiv: schräge Kante (wie eine Uferlinie von oben) statt Rundungen.
+   ========================================================================== */
+@font-face {
+  font-family: "Archivo";
+  src: url("../fonts/archivo-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --f-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wide: 118%;
+  --r-pill: 6px;
+  --r-sm: 3px;
+  --r-md: 4px;
+  --r-lg: 6px;
+  --cut: clamp(1.5rem, 4vw, 4rem);   /* Höhe der schrägen Sektionskante */
+}
+
+body { font-feature-settings: normal; letter-spacing: -0.003em; }
+
+h1, h2, h3, h4 { font-weight: 700; font-stretch: var(--wide); letter-spacing: -0.03em; }
+h1 { font-weight: 760; letter-spacing: -0.045em; line-height: 0.98; }
+h2 { letter-spacing: -0.04em; line-height: 1.02; }
+h3 { font-stretch: 108%; letter-spacing: -0.02em; }
+h4 { font-stretch: 100%; letter-spacing: -0.01em; }
+
+/* Keine kursiven Akzentwörter mehr – die Überschrift wirkt als Ganzes */
+h1 em, h2 em,
+.section--lake h1 em, .section--lake h2 em,
+.cta-band h2 em, .footer-claim em { font-style: normal; font-weight: inherit; color: inherit; }
+
+/* Display-Elemente auf die breite, kräftige Achse */
+.brand__name { font-weight: 720; font-stretch: 112%; letter-spacing: -0.02em; }
+.brand__name small { font-weight: 450; font-stretch: 100%; letter-spacing: 0; text-transform: none; }
+.site-nav a { font-weight: 560; }
+.footer-claim { font-weight: 760; font-stretch: var(--wide); letter-spacing: -0.04em; line-height: 1; }
+.faq summary { font-weight: 620; font-stretch: 104%; letter-spacing: -0.01em; }
+.stat dd { font-weight: 760; font-stretch: var(--wide); letter-spacing: -0.05em; }
+.cost__mega { font-weight: 800; font-stretch: 125%; letter-spacing: -0.06em; }
+.calc__big { font-weight: 780; font-stretch: var(--wide); letter-spacing: -0.045em; }
+.range-field output { font-weight: 650; }
+.situation__fact strong { font-weight: 760; font-stretch: var(--wide); letter-spacing: -0.03em; }
+.advisor__score strong { font-weight: 780; font-stretch: var(--wide); }
+.contact__phone { font-weight: 720; font-stretch: 110%; letter-spacing: -0.02em; }
+.values__list h3 { font-style: normal; font-weight: 300; font-stretch: var(--wide); letter-spacing: -0.04em; }
+.advisor__quote blockquote { font-style: normal; font-weight: 450; }
+.map .map__label { font: 500 16px var(--f-body); }
+.notfound__num { font-style: normal; font-weight: 800; font-stretch: 125%; }
+.step::before { font-weight: 700; }
+
+/* Labels: Satzschreibung, ohne Punkt – leiser, aber in Arbeitsblau */
+.eyebrow { text-transform: none; letter-spacing: 0; font-size: var(--fs-sm); font-weight: 600; color: var(--c-accent-ink); }
+.eyebrow::before { display: none; }
+.section--lake .eyebrow { color: var(--c-sky); }
+.location__badge { text-transform: none; letter-spacing: 0; font-size: var(--fs-xs); }
+
+/* Situationen sind keine Reihenfolge → keine 01/02, sondern ein schräger Strich */
+.situation::before {
+  content: "";
+  width: 1.75rem; height: 0.4rem;
+  margin-top: 0.7rem;
+  background: var(--c-blue);
+  transform: skewX(-24deg);
+}
+
+/* Schräge Kanten statt Rundungen und Wellen */
+.section--lake {
+  clip-path: polygon(0 var(--cut), 100% 0, 100% calc(100% - var(--cut)), 0 100%);
+  padding-block: calc(var(--section) + var(--cut) * 0.6);
+}
+.waterline { display: none; }
+.cta-band { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.5rem), calc(100% - 2.5rem) 100%, 0 100%); }
+.cta-band::after {
+  right: -4rem; bottom: auto; top: -2rem;
+  width: 14rem; height: 18rem;
+  border: 0; border-radius: 0; box-shadow: none; opacity: 1;
+  background: linear-gradient(115deg, transparent 0 40%, rgb(143 184 238 / 0.14) 40% 62%, transparent 62%);
+}
+.ph--organic,
+.advisor__photo { border-radius: 0; clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+.site-footer { clip-path: polygon(0 var(--cut), 100% 0, 100% 100%, 0 100%); padding-top: calc(var(--section) + var(--cut) * 0.5); margin-top: calc(var(--cut) * -0.2); }
+
+/* Karten: Linie statt weichem Schatten */
+.contact__form, .calc { box-shadow: var(--sh-inset); }
+.calc { border-top: 4px solid var(--c-blue); }
+.situation__fact { border-left: 3px solid var(--c-blue); box-shadow: none; }
+
+/* Bewegung: nur ein Moment beim Laden (Überschrift + Punktfeld), keine Einblendung pro Sektion */
+.reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1 { animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .hero .lead, .hero__actions, .hero .trust-line { animation: rise 900ms 120ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(0.6em); clip-path: inset(0 0 100% 0); } to { opacity: 1; transform: none; clip-path: inset(0 0 -20% 0); } }
+}
+.hero h1 { font-stretch: 110%; font-size: clamp(2.125rem, 1.5rem + 2.6vw, 3.75rem); }
+
+/* Feinschliff nach Sichtprüfung */
+.stat dd { font-stretch: 108%; white-space: nowrap; font-size: clamp(2.25rem, 1.4rem + 2.4vw, 3.5rem); }
+.situation__fact strong { font-stretch: 100%; }
+.step__meta, .feature__aside h3, .compare dt, .site-footer h2 { text-transform: none; letter-spacing: 0; }
+.step__meta { font-size: var(--fs-sm); }
+.site-footer h2 { font-size: var(--fs-sm); color: var(--c-sky); }
+address { font-style: normal; }
+@media (max-width: 29.99em) { .hero h1 { font-stretch: 100%; } }

@@ -529,7 +529,7 @@ a:hover { color: var(--c-accent-ink); text-decoration-thickness: 2px; }
 .form__row { display: grid; gap: var(--s-3); }
 @media (min-width: 40em) { .form__row--2 { grid-template-columns: 1fr 1fr; } }
 
-.field { display: grid; gap: 0.4rem; }
+.field { display: grid; gap: 0.4rem; align-content: start; }
 .field label,
 .field legend { font-weight: 600; font-size: var(--fs-sm); }
 .field .hint { font-size: var(--fs-xs); color: var(--c-ink-soft); }

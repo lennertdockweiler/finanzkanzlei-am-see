@@ -5,7 +5,7 @@
 - **Sand:** https://lennertdockweiler.github.io/finanzkanzlei-am-see/
 - **Blau:** https://lennertdockweiler.github.io/finanzkanzlei-am-see/variante-blau/
 
-Variante Blau: mehr Weiß, Bodensee-Blau als Arbeitsfarbe (Buttons, Links, Akzente). Orange markiert nur noch „Ihres“ – die Boje „Ihre Bank“, den berechneten Kaufpreis, „0 €“ und die Zentrale auf der Karte. Layout, Texte und Funktionen sind identisch; die Variante überschreibt nur Farben (`assets/css/theme-blau.css`).
+Variante Blau: mehr Weiß, Bodensee-Blau als Arbeitsfarbe (Buttons, Links, Akzente). Orange markiert nur noch „Ihres“ – die Boje „Ihre Bank“, den berechneten Kaufpreis, „0 €“ und die Zentrale auf der Karte. Außerdem eigene Typografie: **Archivo** (Breiten-Achse) – Überschriften breit und kräftig, Fließtext normal breit – plus schräge Kanten statt Rundungen, keine kursiven Akzentwörter und keine Einblend-Animation pro Sektion. Texte und Funktionen sind identisch; die Variante überschreibt nur CSS (`assets/css/theme-blau.css`).
 
 > ⚠️ Das ist ein **Entwurf zur internen Abstimmung**, nicht die offizielle Website der Finanzkanzlei am See GmbH.
 > Alle Seiten sind auf `noindex` gesetzt. Stellen mit `[[ERSETZEN: …]]` sind bewusst markierte Platzhalter
@@ -17,7 +17,7 @@ Variante Blau: mehr Weiß, Bodensee-Blau als Arbeitsfarbe (Buttons, Links, Akzen
 - Signature-Element „1 aus 600“: Punktfeld, in dem eine einzelne Boje für die passende Bank steht
 - Budgetrechner (läuft komplett im Browser), schematische Standortkarte als SVG – **ohne Cookies, Tracking oder externe Dienste**
 - Beratungsformular für Netlify Forms (auf GitHub Pages wird nicht gesendet – dort erscheint die Fehlermeldung mit Telefonnummer)
-- Schriften Fraunces + Instrument Sans, selbst gehostet
+- Schriften selbst gehostet: Fraunces + Instrument Sans (Sand), Archivo (Blau)
 
 ## Lokal ansehen
 
